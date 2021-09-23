@@ -57,23 +57,13 @@ async function runAsync() {
 				tr = document.createElement('tr');
 
 			tr.innerHTML =
-				//`<td>${id}<td>` +
 				`<td><a href='${url}' target='_blank'>${title}</a><td>`;
 
 			table.appendChild(tr);	      
 		});
 		
-// 		for (const album in _albums) {
-// 			const url = album['url'],
-// 			      title = album['title'],
-// 				  tr = document.createElement('tr');
-
-// 			tr.innerHTML =
-// 				//`<td>${id}<td>` +
-// 				`<td><a href='${url}' target='_blank'>${title}</a><td>`;
-
-// 			table.appendChild(tr);
-// 		}
+		//TODO: Show thumbnail
+		//TODO: Show total file size (https://stackoverflow.com/questions/56046574/retrieve-file-size-for-videos-stored-on-google-photos)
 
 		table.id = tableId;
 		frag.appendChild(table);
