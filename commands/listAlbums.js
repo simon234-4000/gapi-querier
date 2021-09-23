@@ -41,7 +41,7 @@ async function requestList(method, path, body, processResults, pageToken) {
 }
 
 async function runAsync() {
-	await requestList('GET', '/albums?pageSize=100', null, async (results) =>
+	await requestList('GET', '/albums?pageSize=50', null, async (results) =>
 		storeAlbums(results.albums));
 
 	if (Object.keys(_albums).length) {
