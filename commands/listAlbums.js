@@ -5,8 +5,8 @@ const _albums = {};
 function storeAlbums(albums) {
 	if (!albums) return;
 
-	for (const mi of albums) {
-		_albums[mi.id] = mi;
+	for (const album of albums) {
+		_albums[] = album;
 	}
 }
 function forgetAlbums(albums) {
