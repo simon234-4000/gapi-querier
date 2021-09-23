@@ -17,7 +17,7 @@ function forgetAlbums(albums) {
 	}
 }
 
-async function requestPagedRecursively(method, path, body, processResults, pageToken) {
+async function requestList(method, path, body, processResults, pageToken) {
 	let url = path;
 
 	if (pageToken) {
@@ -37,31 +37,17 @@ async function requestPagedRecursively(method, path, body, processResults, pageT
 	return apiGooglePhotos.request(method, url, body)
 		.then(async (results) => {
 			await processResults(results);
-
-			if (results.nextPageToken) {
-				return requestPagedRecursively(method, path, body, processResults, results.nextPageToken);
-			}
 		});
 }
 
 async function runAsync() {
-	await requestPagedRecursively('GET', '/albums?pageSize=100', null, async (results) =>
+	await requestList('GET', '/albums?pageSize=100', null, async (results) =>
 		storeAlbums(results.albums));
-
-	await requestPagedRecursively('GET', '/albums?pageSize=50', null, async (results) => {
-		if (!results.albums) return;
-
-		for (const a of results.albums) {
-			await requestPagedRecursively(
-				'POST', '/albums:search', { albumId: a.id, pageSize: 100 },
-				async (results) => forgetAlbums(results.albums));
-		}
-	});
 
 	if (Object.keys(_albums).length) {
 		const frag = document.createDocumentFragment(),
 			  table = document.createElement('table'),
-			  tableId = 'tableFindOutOfAlbumPhotos';
+			  tableId = 'tableAlbums';
 
 		for (const id in _albums) {
 			const url = _albums[id],
@@ -79,7 +65,7 @@ async function runAsync() {
 
 		return frag;
 	}
-	else return 'No out-of-album photos found';
+	else return 'No albums found';
 }
 
 export default [
