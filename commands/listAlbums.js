@@ -48,18 +48,32 @@ async function runAsync() {
 		const frag = document.createDocumentFragment(),
 			  table = document.createElement('table'),
 			  tableId = 'tableAlbums';
-
-		for (const album in _albums) {
+		
+		//const keys = Object.keys(_albums);
+		
+		Object.values(_albums).forEach(val => 
 			const url = album['url'],
-			      title = album['title'],
-				  tr = document.createElement('tr');
+				title = album['title'],
+				tr = document.createElement('tr');
 
 			tr.innerHTML =
 				//`<td>${id}<td>` +
 				`<td><a href='${url}' target='_blank'>${title}</a><td>`;
 
-			table.appendChild(tr);
-		}
+			table.appendChild(tr);	      
+		);
+		
+// 		for (const album in _albums) {
+// 			const url = album['url'],
+// 			      title = album['title'],
+// 				  tr = document.createElement('tr');
+
+// 			tr.innerHTML =
+// 				//`<td>${id}<td>` +
+// 				`<td><a href='${url}' target='_blank'>${title}</a><td>`;
+
+// 			table.appendChild(tr);
+// 		}
 
 		table.id = tableId;
 		frag.appendChild(table);
