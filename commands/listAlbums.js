@@ -51,7 +51,7 @@ async function runAsync() {
 		
 		//const keys = Object.keys(_albums);
 		
-		Object.values(_albums).forEach(album => 
+		Object.values(_albums).forEach(album => {
 			const url = album['url'],
 				title = album['title'],
 				tr = document.createElement('tr');
@@ -61,7 +61,7 @@ async function runAsync() {
 				`<td><a href='${url}' target='_blank'>${title}</a><td>`;
 
 			table.appendChild(tr);	      
-		);
+		});
 		
 // 		for (const album in _albums) {
 // 			const url = album['url'],
