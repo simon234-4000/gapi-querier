@@ -1,5 +1,6 @@
 //import example from './commands/example.js';
 import findOutOfAlbumPhotos from './commands/findOutOfAlbumPhotos.js';
+import listAlbums from './commands/listAlbums.js';
 
 export default [
 
