@@ -5,9 +5,10 @@ const _albums = {};
 function storeAlbums(albums) {
 	if (!albums) return;
 
-	for (const mi of albums) {
-		_albums[mi.id] = mi.productUrl;
-	}
+// 	for (const mi of albums) {
+// 		_albums[mi.id] = mi.title;
+// 	}
+	_albums = albums;
 }
 function forgetAlbums(albums) {
 	if (!albums) return;
@@ -49,13 +50,14 @@ async function runAsync() {
 			  table = document.createElement('table'),
 			  tableId = 'tableAlbums';
 
-		for (const id in _albums) {
-			const url = _albums[id],
+		for (const album in _albums) {
+			const url = album['url'],
+			      title = album['title'],
 				  tr = document.createElement('tr');
 
 			tr.innerHTML =
 				//`<td>${id}<td>` +
-				`<td><a href='${url}' target='_blank'>${url}</a><td>`;
+				`<td><a href='${url}' target='_blank'>${title}</a><td>`;
 
 			table.appendChild(tr);
 		}
