@@ -6,7 +6,7 @@ function storeAlbums(albums) {
 	if (!albums) return;
 
 	for (const album of albums) {
-		_albums.push(album);
+		_albums[album.id] = album;
 	}
 }
 function forgetAlbums(albums) {
